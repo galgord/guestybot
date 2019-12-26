@@ -1,7 +1,13 @@
 require('dotenv').config();
 const axios = require('axios');
 const slackbot = require('slackbots');
+<<<<<<< HEAD
 axios.defaults.headers.common = {'Authorization': `Bearer ${process.env.BEARER_TOKEN}`}
+=======
+console.log(process.env);
+axios.defaults.headers.common = {'Authorization': `Bearer ${process.env.BEARER_TOKEN}`}
+
+>>>>>>> 759f825c2b875a3a8164362ebe877d79d4f51971
 bot = new slackbot({
 	token: process.env.BOT_TOKEN,
 	name: "Montango"
@@ -27,6 +33,10 @@ if(message.includes(" 5")){
 	getActiveListings(message.replace('<@US4796D70> ',''));
 }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 759f825c2b875a3a8164362ebe877d79d4f51971
 function getActiveListings(accountId){
 	var count ="";
 	var listingId = "";
@@ -37,12 +47,26 @@ function getActiveListings(accountId){
 		for(i=0;i<res.data.results.length;i++){
 		listingId = res.data.results[i]._id;
 		title = res.data.results[i].title;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 759f825c2b875a3a8164362ebe877d79d4f51971
 		const params = {
  	icon_emoji:':guesty:'
  }
  bot.postMessageToChannel('general', title + "," + listingId,params);
+<<<<<<< HEAD
 }
  bot.postMessageToChannel('general', `This user has a total of ${count} active and listined listings`,params);
 		})
 	.catch(error => { console.log(error); return Promise.reject(error); });
 	}
+=======
+
+}
+ bot.postMessageToChannel('general', `This user has a total of ${count} active and listined listings`,params);
+
+		})
+	.catch(error => { console.log(error); return Promise.reject(error); });
+	}
+>>>>>>> 759f825c2b875a3a8164362ebe877d79d4f51971
