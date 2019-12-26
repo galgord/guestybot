@@ -30,11 +30,12 @@ if(message.includes(" 5")){
 }
 }
 
-function getActiveListings(accountId){
+function getActiveListings(ac
+	countId){
 	var count ="";
 	var listingId = "";
 	var title = "";
-	axios.get(`https://api.guesty.com/api/v2/listings?accountId=${accountId}&active=true&listed=true`)
+	axios.get(`https://api.guesty.com/api/v2/listings?accountId=${accountId}&active=true&listed=true&limit=100`)
 	.then(res=>{
 			const params = {
  	icon_emoji:':guesty:'
