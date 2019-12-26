@@ -47,7 +47,7 @@ function getActiveListings(accountId){
  }
  bot.postMessageToChannel('general', title + "," + listingId,params);
 }
- bot.postMessageToChannel('general', `This user has a total of ${count} active and listined listings`,params);
+ bot.postMessageToChannel('general', `This user has a total of ${count} active and listed listings`,params);
 
 		})
 	.catch(error => { console.log(error); return Promise.reject(error); });
