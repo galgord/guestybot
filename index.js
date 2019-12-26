@@ -5,7 +5,7 @@ const BearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklkIjoiNWRmYj
 axios.defaults.headers.common = {'Authorization': `Bearer ${BearerToken}`}
 
 const bot = new slackbot({
-	token: 'xoxb-886048913093-888247217238-L2Bur1SCWLx5N7DQDEr6KFs8',
+	token: 'xoxb-886048913093-888247217238-66wZyep1TLyapDMfYRUyFaXe',
 	name: "Montango"
 });
 
@@ -18,7 +18,7 @@ bot.on('start', ()=>{
 });
 
 // Error
-bot.on('error',(err)=>{console.log(err); return Promise.reject(error); });
+bot.on('error',(err)=>{console.log(err); return Promise.reject(err); });
 
 // Message
 
@@ -45,7 +45,7 @@ function replyHi(){
 		console.log(this.answer);
 		}
 	})
-	.catch(error => { console.error(error); return Promise.reject(error); });
+	.catch(error => { console.log(error); return Promise.reject(error); });
 	const params = {
  	icon_emoji:':guesty:'
  }
