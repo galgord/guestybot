@@ -1,0 +1,15 @@
+{
+  "name": "guestybot",
+  "version": "1.0.0",
+  "description": "Get listings from Admin",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Gal Gordon",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "slackbots": "^1.2.0"
+  }
+}
