@@ -1,11 +1,11 @@
+require('dotenv').config();
 const axios = require('axios');
 const slackbot = require('slackbots');
+console.log(process.env);
+axios.defaults.headers.common = {'Authorization': `Bearer ${process.env.BEARER_TOKEN}`}
 
-const BearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklkIjoiNWRmYjg0MTM5NjMwOTQwMDFmNjgzYzVkIiwidXNlcklkIjoiNWI1ZDdhYzdhMmM0MzEwMDQ3NTc2NzFkIiwibmFtZSI6IkdhbC5Hb3Jkb24iLCJkYiI6ImVtcGxveWVlcyIsInJvbGUiOiJhZG1pbiIsInJlcXVlc3RlciI6IkFETUlOIiwiaXNzIjoicHJvZHVjdGlvbi5ndWVzdHkuY29tIiwicmVxdWVzdGVySWQiOiI1YjVkN2FjN2EyYzQzMTAwNDc1NzY3MWQiLCJpYXQiOjE1NzY3NjQ0MzUsImV4cCI6MTU3NzM2OTIzNX0.WFDBvwj_bznec5jKbmUAvtxSXeE4mIkE_HuRgCAxo18";
-axios.defaults.headers.common = {'Authorization': `Bearer ${BearerToken}`}
-
-const bot = new slackbot({
-	token: 'xoxb-886048913093-888247217238-66wZyep1TLyapDMfYRUyFaXe',
+bot = new slackbot({
+	token: process.env.BOT_TOKEN,
 	name: "Montango"
 });
 
@@ -30,24 +30,30 @@ bot.on('message',(data)=>{
 });
 
 function handleMessage(message){
-if(message.includes(" hi")){
-	replyHi();
+if(message.includes(" 5")){
+	getActiveListings(message.replace('<@US4796D70> ',''));
 }
 }
 
-function replyHi(){
-	let answer = "test";
-	axios.get("https://api.guesty.com/api/v2/listings?accountId=563e0b6a08a2710e00057b82")
+function getActiveListings(accountId){
+	var count ="";
+	var listingId = "";
+	var title = "";
+	axios.get(`https://api.guesty.com/api/v2/listings?accountId=${accountId}&active=true&listed=true`)
 	.then(res=>{
+		count = res.data.results.count;
 		for(i=0;i<res.data.results.length;i++){
-		answer = res.data.results[i]._id;
-		console.log(answer);
-		console.log(this.answer);
-		}
-	})
-	.catch(error => { console.log(error); return Promise.reject(error); });
-	const params = {
+		listingId = res.data.results[i]._id;
+		title = res.data.results[i].title;
+
+		const params = {
  	icon_emoji:':guesty:'
  }
- bot.postMessageToChannel('general', `here are the Ids: ${this.answer}`,params);
-};
+ bot.postMessageToChannel('general', title + "," + listingId,params);
+
+}
+ bot.postMessageToChannel('general', `This user has a total of ${count} active and listined listings`,params);
+
+		})
+	.catch(error => { console.log(error); return Promise.reject(error); });
+	}
