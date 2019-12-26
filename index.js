@@ -36,19 +36,22 @@ function getActiveListings(accountId){
 	var title = "";
 	axios.get(`https://api.guesty.com/api/v2/listings?accountId=${accountId}&active=true&listed=true`)
 	.then(res=>{
-		count = res.data.results.count;
+			const params = {
+ 	icon_emoji:':guesty:'
+ }
+		count = res.data.count;
+		if(count === 0){
+
+  bot.postMessageToChannel('general', "Looks like this user doesnt have any active and listed listings" ,params);
+  return;
+		}
+ bot.postMessageToChannel('general', `This user has a total of ${count} active and listed listings`,params);
+ setTimeout(()=>{
 		for(i=0;i<res.data.results.length;i++){
 		listingId = res.data.results[i]._id;
 		title = res.data.results[i].title;
-
-
-		const params = {
- 	icon_emoji:':guesty:'
- }
  bot.postMessageToChannel('general', title + "," + listingId,params);
-}
- bot.postMessageToChannel('general', `This user has a total of ${count} active and listed listings`,params);
-
+}},350);
 		})
 	.catch(error => { console.log(error); return Promise.reject(error); });
 	}
