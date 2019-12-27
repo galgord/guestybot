@@ -4,9 +4,10 @@ const axios = require('axios');
 const slackbot = require('slackbots');
 
 axios.defaults.headers.common = {
-	'Authorization': `Bearer ${process.env.BEARER_TOKEN}`,
-	'Content-Type' : "application/json"
+	'Authorization': `Bearer ${process.env.BEARER_TOKEN}`
 }
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 bot = new slackbot({
 	token: process.env.BOT_TOKEN,
