@@ -56,13 +56,6 @@ const messageReceived = (message) => {
     });
 }
 const sendOptions = () => {
-    // const params = {
-    //     icon_emoji: ':guesty:'
-    // }
-    // const test = bot.getImChannels();
-    // console.log(test._value);
-    // bot.postMessage('guestybot', "Which report whould you like?(respond with a number)\n 1. Active and Listed\n 2. Active and Unlisted\n 3. Inactive and Listed\n 4. Inactive and Unlisted", params);
-    // axios.post()
   var json =  [
 	{
 		"type": "section",
@@ -138,6 +131,8 @@ const sendOptions = () => {
 	}
 ];
 console.log(json);
+
+
     bot.on('message', (data) => {
         if (data.type !== 'message') {
             return;
