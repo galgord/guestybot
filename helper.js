@@ -17,10 +17,10 @@ const getListings = (accountId, isActive, isListed) => {
 			count = res.data.count;
 			if (count === 0) {
 
-				bot.postMessage('guestybot', "Looks like this user doesnt have any relevent listings", params);
+				bot.postMessage('guestyidbot', "Looks like this user doesnt have any relevent listings", params);
 				return;
 			}
-			bot.postMessage('guestybot', `This user has a total of ${count} listings`, params);
+			bot.postMessage('guestyidbot', `This user has a total of ${count} listings`, params);
 			setTimeout(() => {
 				for (i = 0; i < res.data.results.length; i++) {
 					listingId = res.data.results[i]._id;
@@ -38,7 +38,7 @@ const start = () => {
 	bot.on('start', () => {
 		// const test = bot.getImChannels();
 		// console.log(test._value);
-		bot.postMessage('guestybot', "Get Ready", params);
+		bot.postMessage('guestyidbot', "Get Ready", params);
 	});
 }
 const error = () => {
