@@ -17,7 +17,7 @@ function handleMessage(message) {
 }
 
 function sendTextOptions() {
-	bot.postMessage('guestybot', "*What report would you like?* (please reply to @montango with a number)\n1. Active and Listed\n 2. Active and Unlisted\n 3. Inactive and Listed\n 4. Inactive and Unlisted", helper.params);
+	bot.postMessage('guestyidbot', "*What report would you like?* (please reply to @montango with a number)\n1. Active and Listed\n 2. Active and Unlisted\n 3. Inactive and Listed\n 4. Inactive and Unlisted", helper.params);
 }
 
 exports.handleMessage = handleMessage;
