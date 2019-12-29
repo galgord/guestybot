@@ -25,7 +25,7 @@ const getListings = (accountId, isActive, isListed) => {
 				for (i = 0; i < res.data.results.length; i++) {
 					listingId = res.data.results[i]._id;
 					title = res.data.results[i].title;
-					bot.postMessage('guestybot', title + "," + listingId, params);
+					bot.postMessage('guestyidbot', listingId + "\r" + title, params);
 				}
 			}, 350);
 		})
