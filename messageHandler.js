@@ -1,19 +1,40 @@
 const helper = require('./helper');
 var currentAccountId = "first init"
+var wasSent = false;
+
 function handleMessage(message) {
 	var firstAnswer = message.replace('<@US4796D70> ', '');
-	if (firstAnswer.startsWith("5")) {
-		currentAccountId = firstAnswer;
-		sendTextOptions();
-	} else if (firstAnswer.startsWith("1")) {
-		helper.getListings(currentAccountId, true, true);
-	} else if (firstAnswer.startsWith("2")) {
-		helper.getListings(currentAccountId, true, false);
-	} else if (firstAnswer.startsWith("3")) {
-		helper.getListings(currentAccountId, false, true);
-	} else if (firstAnswer.startsWith("4")) {
-		helper.getListings(currentAccountId, false, false);
+	if (firstAnswer.startsWith("G")) {
+		return;
 	}
+	if (firstAnswer.startsWith("5")) {
+		if (!wasSent) {
+			currentAccountId = firstAnswer;
+			sendTextOptions();
+		}
+		wasSent = true;
+	} else if (firstAnswer.startsWith("1")) {
+		wasSent = true;
+		helper.getListings(currentAccountId, true, true);
+		return;
+	} else if (firstAnswer.startsWith("2")) {
+		wasSent = true;
+
+		elper.getListings(currentAccountId, true, false);
+		return;
+	} else if (firstAnswer.startsWith("3")) {
+		wasSent = true;
+		helper.getListings(currentAccountId, false, true);
+		return;
+	} else if (firstAnswer.startsWith("4")) {
+		wasSent = true;
+		helper.getListings(currentAccountId, false, false);
+		return;
+	}
+	// } else{
+	// 	bot.postMessage('guestyidbot',"Sorry, I dont recognize this message..",helper.params);
+	// return;
+	// }
 }
 
 function sendTextOptions() {
