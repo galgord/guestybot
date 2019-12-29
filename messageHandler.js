@@ -8,27 +8,26 @@ function handleMessage(message) {
 		return;
 	}
 	if (firstAnswer.startsWith("5")) {
-		if (!wasSent) {
+		if (wasSent == false) {
 			currentAccountId = firstAnswer;
 			sendTextOptions();
 		}
 		wasSent = true;
 	} else if (firstAnswer.startsWith("1")) {
-		wasSent = true;
 		helper.getListings(currentAccountId, true, true);
+		setTimeout(() => {wasSent = false},2500);
 		return;
 	} else if (firstAnswer.startsWith("2")) {
-		wasSent = true;
-
 		elper.getListings(currentAccountId, true, false);
+		setTimeout(() => {wasSent = false},2500);
 		return;
 	} else if (firstAnswer.startsWith("3")) {
-		wasSent = true;
 		helper.getListings(currentAccountId, false, true);
+		setTimeout(() => {wasSent = false},2500);
 		return;
 	} else if (firstAnswer.startsWith("4")) {
-		wasSent = true;
 		helper.getListings(currentAccountId, false, false);
+		setTimeout(() => {wasSent = false},2500);
 		return;
 	}
 	// } else{
