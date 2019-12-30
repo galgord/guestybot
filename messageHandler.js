@@ -15,19 +15,19 @@ function handleMessage(message) {
 		wasSent = true;
 	} else if (firstAnswer.startsWith("1")) {
 		helper.getListings(currentAccountId, true, true);
-		setTimeout(() => {wasSent = false},2500);
+		setTimeout(() => {wasSent = false},6000);
 		return;
 	} else if (firstAnswer.startsWith("2")) {
-		elper.getListings(currentAccountId, true, false);
-		setTimeout(() => {wasSent = false},2500);
+		helper.getListings(currentAccountId, true, false);
+		setTimeout(() => {wasSent = false},6000);
 		return;
 	} else if (firstAnswer.startsWith("3")) {
 		helper.getListings(currentAccountId, false, true);
-		setTimeout(() => {wasSent = false},2500);
+		setTimeout(() => {wasSent = false},6000);
 		return;
 	} else if (firstAnswer.startsWith("4")) {
 		helper.getListings(currentAccountId, false, false);
-		setTimeout(() => {wasSent = false},2500);
+		setTimeout(() => {wasSent = false},6000);
 		return;
 	}
 	// } else{
